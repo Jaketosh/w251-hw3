@@ -1,0 +1,12 @@
+FROM alpine
+
+RUN apk update
+
+RUN apk add python
+RUN apk add vim
+RUN apk add py-pip
+RUN pip install paho-mqtt
+
+WORKDIR /tmp
+
+EXPOSE 1883

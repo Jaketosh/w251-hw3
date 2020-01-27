@@ -1,0 +1,29 @@
+# FROM nvidia/cuda
+# FROM nvidia/cuda:8.0-cudnn6-devel
+# FROM nvidia/cuda:8.0-cudnn5-devel
+FROM ubuntu
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    git \
+    python-pip \
+    python-setuptools \
+    python-dev \
+    vim \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN pip install numpy
+RUN pip install paho-mqtt
+RUN pip install ibm-cos-sdk
+RUN pip install --upgrade s3cmd
+
+ARG URL=http://169.44.201.108:7002/jetpacks/4.3
+
+RUN apt-get update && apt install -y git pkg-config wget build-essential cmake unzip
+
+WORKDIR /tmp
+# RUN rm *.deb
+RUN mkdir /tmp/images
+
